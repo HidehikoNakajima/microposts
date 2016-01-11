@@ -1,4 +1,8 @@
-<h1>
+<h1><%= t('Profile') %></h1>
+
+<h2>
   <%= gravatar_for @user %>
   <%= @user.name %>
-</h1>
+</h2>
+
+<%= render 'form', pageType: 'show' %>

@@ -4,19 +4,47 @@
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+      <% if pageType == 'show' %>
+        <%= f.label :name %>: <%= @user.name %> </br>
+      <% else %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      <% end %>
+      
+      <% if pageType == 'show' %>
+        <%= f.label :email %>: <%= @user.email %> </br>
+      <% else %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      <% end %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit class: "btn btn-large btn-primary" %>
+      <% unless pageType == 'show' %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+  
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      <% end %>
+      
+      <% if pageType == 'show' %>
+        
+        <%= f.label :area %>: <%= @user.area %> </br>
+        <%= f.label :age %>: <%= @user.age %>
+        
+      <% else %>
+        
+        <%= f.label :area %>
+        <%= f.text_field :area %>
+        
+        <%= f.label :age %>
+        <%= f.text_field :age %>
+        
+      <% end %>
+      
+      <% unless pageType == 'show' %>
+        <%= f.submit class: "btn btn-large btn-primary" %>
+      <% end %>
+      
     <% end %>
   </div>
 </div>
