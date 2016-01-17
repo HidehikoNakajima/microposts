@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
-    @follower_users = @user.follower_users
-    @following_users = @user.following_users
   end  
     
   def new
@@ -37,6 +35,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def followings
+    @user = User.find(params[:id])
+    @following_users = @user.following_users    
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @follower_users = @user.follower_users
+  end
+
   private
   
   def user_params
@@ -54,5 +62,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+  
   
 end

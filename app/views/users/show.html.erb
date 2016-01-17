@@ -8,23 +8,12 @@
         </h1>
       </section>
     </div>
-    
     <div class="row">
-      <div class="col-md-6">
-        <h3>フォロワー</h3>
-        <ol class="follower">
-          <%= render partial: 'follower' , collection: @follower_users %>
-        </ol>
-      </div>
-      <div class="col-md-6">
-        <h3>フォロー</h3>
-        <ol class="following">
-          <%= render partial: 'following' , collection: @following_users %>
-        </ol>
-      </div>
+      <h3><%= link_to "フォロワー", followers_user_path(@user)%></h3>
+      <h3><%= link_to "フォロー", followings_user_path(@user)%></h3>
     </div>
-      
   </aside>
+  
   <div class="col-md-4">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
