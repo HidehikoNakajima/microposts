@@ -7,8 +7,10 @@
       </h1>
     </section>
   </div>
-  <h3>フォロワー</h3>    
+  <h3>フォロワー</h3>  
+  <%= page_entries_info @follower_users %>
   <ol class="follower">
     <%= render partial: 'follower' , collection: @follower_users %>
   </ol>
+  <%= paginate @follower_users %>
 </aside>

@@ -8,7 +8,10 @@
     </section>
   </div>
   <h3>フォロー</h3>
+  <%= page_entries_info @following_users %>  
   <ol class="following">
     <%= render partial: 'following' , collection: @following_users %>
   </ol>
+  <%= paginate @following_users %>
 </aside>
+
