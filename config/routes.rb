@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   end
   
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts
+  resources :microposts do
+    member do
+      post 'retweet'
+    end
+  end
   resources :relationships, only: [:create, :destroy]
   resources :followers
   resources :followings
