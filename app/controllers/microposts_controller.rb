@@ -3,13 +3,13 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
-    @micropost.content = @micropost.content
+    #@micropost.content = @micropost.content
     if @micropost.save
       flash[:success] = "Micropost created!"
       redirect_to root_url
     else
+      @feed_items = current_user.feed_items.includes(:user).page(params[:page]).per(5).order(created_at: :desc) 
       render 'static_pages/home'
-      @feed_items = current_user.feed_items.includes(:user).order(created_at: :desc) 
     end
   end
   
