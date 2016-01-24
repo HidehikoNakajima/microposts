@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   validates :email, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false } , if: ->(u) { u.age.present? }
-  validates :area, presence: true
+  validates :area, presence: true, on: :update
   validates :area, length: { maximum: 50}, if: ->(u) { u.area.present? }
-  validates :age , presence:true
+  validates :age , presence:true, on: :update
   validates :age , numericality:{greater_than_or_equal_to:0}, if: ->(u) { u.age.present? }
   has_secure_password
   has_many :microposts

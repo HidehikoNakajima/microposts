@@ -31,7 +31,7 @@
         <%= f.label :area %>: <%= @user.area %> </br>
         <%= f.label :age %>: <%= @user.age %>
         
-      <% else %>
+      <% elsif pageType == 'edit' %>
         
         <%= f.label :area %>
         <%= f.text_field :area, class: 'form-control' %>
