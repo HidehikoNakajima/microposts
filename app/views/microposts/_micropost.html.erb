@@ -1,18 +1,24 @@
 <li id="micropost-<%= micropost.id %>">
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
-  <% unless micropost.baseid.nil? %>
+  <% if micropost.baseid.nil? %>
+    <span class="content"><%= micropost.content %></span>
+  <% else %>
     <span class="label label-default">RETWEET</span>
-    Posted by <%= micropost.baseid %>
+    <div class="alert-info"><%= micropost.content %></div>
+    Original post is by <%= micropost.baseuser_name %>.
   <% end %>
-  <span class="content"><%= micropost.content %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(micropost.created_at) %> ago.
     <% if current_user == micropost.user %>
       <%= link_to "delete", micropost, method: :delete, data: { confirm: "You sure?" }%>
     <% else %>
       <% if micropost.baseid.nil? %>
-        <%= link_to "retweet", retweet_micropost_path(id: micropost.id, content: micropost.content, baseid: micropost.baseid), method: :post %>
+        <%= link_to "retweet", 
+                    retweet_micropost_path(id: micropost.id, 
+                                            content: micropost.content, 
+                                            baseid: micropost.baseid,
+                                            baseuser_id: micropost.user), method: :post %>
       <% end %>
     <% end %>
 

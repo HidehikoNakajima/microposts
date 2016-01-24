@@ -6,4 +6,5 @@ class Micropost < ActiveRecord::Base
   has_many :retweets, class_name: "Micropost", foreign_key: "baseid", dependent: :destroy
   belongs_to :tweet, class_name: "Micropost", foreign_key: "id"
 
+  has_one :tweeter, class_name: "User", foreign_key: "baseuser_id"
 end
